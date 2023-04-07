@@ -1,0 +1,36 @@
+public class MatrizParesImpares {
+    public static void main(String[] args) {
+        int[][] matriz = new int[5][5];
+        int pares = 0, impares = 0;
+
+        Scanner sc = new Scanner(System.in);
+
+        // Recebe os valores do teclado e preenche a matriz
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                System.out.print("Digite um valor para [" + i + "][" + j + "]: ");
+                matriz[i][j] = sc.nextInt();
+            }
+        }
+
+        // Imprime a matriz
+        System.out.println("Matriz 5x5:");
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                System.out.print(matriz[i][j] + "\t");
+                if (matriz[i][j] % 2 == 0) {
+                    pares++;
+                } else {
+                    impares++;
+                }
+            }
+            System.out.println();
+        }
+
+        // Imprime a quantidade de números pares e ímpares
+        System.out.println("Quantidade de números pares: " + pares);
+        System.out.println("Quantidade de números ímpares: " + impares);
+
+        sc.close();
+    }
+}

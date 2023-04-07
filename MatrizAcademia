@@ -1,0 +1,61 @@
+public class Academia {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        String[][] acessos = new String[100][3];
+        int contador = 0;
+        
+        while (true) {
+            System.out.println("Selecione uma opção:");
+            System.out.println("1. Registrar acesso");
+            System.out.println("2. Imprimir registros");
+            System.out.println("3. Consultar por nome");
+            System.out.println("4. Sair do programa");
+            
+            int opcao = sc.nextInt();
+            
+            if (opcao == 1) {
+                System.out.print("Nome do cliente: ");
+                String nome = sc.next();
+                System.out.print("Hora de acesso (no formato hh:mm:ss): ");
+                String horaAcesso = sc.next();
+                System.out.print("Hora de saída (no formato hh:mm:ss): ");
+                String horaSaida = sc.next();
+                
+                acessos[contador][0] = nome;
+                acessos[contador][1] = horaAcesso;
+                acessos[contador][2] = horaSaida;
+                
+                contador++;
+            } else if (opcao == 2) {
+                for (int i = 0; i < contador; i++) {
+                    System.out.println("Nome: " + acessos[i][0] + ", Hora de acesso: " + acessos[i][1] + ", Hora de saída: " + acessos[i][2]);
+                }
+            } else if (opcao == 3) {
+                System.out.print("Digite o nome a ser consultado: ");
+                String nomeConsulta = sc.next();
+                
+                boolean encontrado = false;
+                
+                for (int i = 0; i < contador; i++) {
+                    if (acessos[i][0].equals(nomeConsulta)) {
+                        System.out.println("Nome: " + acessos[i][0] + ", Hora de acesso: " + acessos[i][1] + ", Hora de saída: " + acessos[i][2]);
+                        encontrado = true;
+                    }
+                }
+                
+                if (!encontrado) {
+                    System.out.println("Cliente não encontrado.");
+                }
+            } else if (opcao == 4) {
+                System.out.println("Encerrando o programa...");
+                break;
+            } else {
+                System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+        
+        sc.close();
+    }
+    
+}

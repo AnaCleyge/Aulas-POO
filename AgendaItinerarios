@@ -1,0 +1,24 @@
+public class AgendaItinerarios {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[][] agenda = new String[5][2]; // matriz de 5 linhas e 2 colunas
+        int i, j;
+        
+        // Adicionar compromissos
+        System.out.println("Adicionar compromissos:");
+        for (i = 0; i < 5; i++) {
+            System.out.print("Digite o compromisso " + (i+1) + ": ");
+            agenda[i][0] = sc.nextLine();
+            System.out.print("Digite o itinerário para o compromisso " + (i+1) + ": ");
+            agenda[i][1] = sc.nextLine();
+        }
+        
+        // Mostrar compromissos
+        System.out.println("\nCompromissos:");
+        for (i = 0; i < 5; i++) {
+            System.out.println("Compromisso " + (i+1) + ": " + agenda[i][0]);
+            System.out.println("Itinerário: " + agenda[i][1]);
+            System.out.println();
+        }
+    }
+}

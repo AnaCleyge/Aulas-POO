@@ -1,0 +1,84 @@
+public class Hotel {
+    private int numQuartos;
+    private boolean[] quartosDisponiveis;
+
+    public Hotel(int numQuartos) {
+        this.numQuartos = numQuartos;
+        quartosDisponiveis = new boolean[numQuartos];
+        for (int i = 0; i < numQuartos; i++) {
+            quartosDisponiveis[i] = true;
+        }
+    }
+    public void mostrarMenu() {
+        Scanner input = new Scanner(System.in);
+        int opcao;
+        do {
+            System.out.println("\n--- Menu do Hotel ---");
+            System.out.println("1 - Mostrar Quartos Disponíveis");
+            System.out.println("2 - Reservar Quarto");
+            System.out.println("3 - Imprimir Quartos");
+            System.out.println("4 - Sair do Menu");
+            System.out.print("Escolha uma opção: ");
+            opcao = input.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    mostrarQuartosDisponiveis();
+                    break;
+                case 2:
+                    reservarQuarto();
+                    break;
+                case 3:
+                    imprimirQuartos();
+                    break;
+                case 4:
+                    System.out.println("Saindo do menu...");
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        } while (opcao != 4);
+    }
+    private void mostrarQuartosDisponiveis() {
+        System.out.println("\n--- Quartos Disponíveis ---");
+        for (int i = 0; i < numQuartos; i++) {
+            if (quartosDisponiveis[i]) {
+                System.out.println("Quarto " + (i+1) + " disponível");
+            }
+        }
+    }
+
+    private void reservarQuarto() {
+        Scanner input = new Scanner(System.in);
+        System.out.print("\nDigite o número do quarto que deseja reservar: ");
+        int numQuarto = input.nextInt();
+
+        if (numQuarto < 1 || numQuarto > numQuartos) {
+            System.out.println("Número de quarto inválido!");
+            return;
+        }
+
+        if (!quartosDisponiveis[numQuarto-1]) {
+            System.out.println("Quarto já reservado!");
+            return;
+        }
+
+        quartosDisponiveis[numQuarto-1] = false;
+        System.out.println("Quarto " + numQuarto + " reservado com sucesso!");
+    }
+
+    private void imprimirQuartos() {
+        System.out.println("\n--- Quartos do Hotel ---");
+        for (int i = 0; i < numQuartos; i++) {
+            if (quartosDisponiveis[i]) {
+                System.out.println("Quarto " + (i+1) + ": Disponível");
+            } else {
+                System.out.println("Quarto " + (i+1) + ": Ocupado");
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Hotel hotel = new Hotel(10);
+        hotel.mostrarMenu();
+    }
+}
